@@ -18,7 +18,7 @@ class Sidebar extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [
                   BootstrapColors().primary,
-                  BootstrapColors().danger,
+                  BootstrapColors().dark,
                 ],
               ),
             ),
@@ -28,7 +28,9 @@ class Sidebar extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            accountEmail: const Text('admin@product_inventory.com'),
+            accountEmail: const Text(
+              'admin@product_inventory.com',
+            ),
             currentAccountPicture: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/doni.jpg"),
             ),

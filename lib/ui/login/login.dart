@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:product_inventory/models/bootstrap_colors.dart';
 import 'package:product_inventory/services/user_service.dart';
 import 'package:product_inventory/ui/homepage/homepage.dart';
@@ -19,17 +21,17 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const HeaderText(text: 'Product Inventory'),
-                // const SizedBox(height: 20),
-                Image.asset('assets/images/header_image.png', width: 350),
+                const SizedBox(height: 20),
+                Image.asset('assets/images/dark.png', width: 250),
                 const SizedBox(height: 20),
                 Form(
                   key: _formKey,
@@ -44,6 +46,7 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
+                            borderSide: BorderSide(color: Colors.blue),
                           ),
                           labelText: 'Email',
                         ),
@@ -157,7 +160,7 @@ class _LoginState extends State<Login> {
                         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(8),
                             ),
                           ),
                         ),
