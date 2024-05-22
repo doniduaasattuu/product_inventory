@@ -42,7 +42,7 @@ class Sidebar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Login(),
+                  builder: (context) => const Login(),
                 ),
               );
             },
@@ -54,7 +54,7 @@ class Sidebar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Login(),
+                  builder: (context) => const Login(),
                 ),
               );
             },
@@ -78,7 +78,7 @@ class Sidebar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Login(),
+                  builder: (context) => const Login(),
                 ),
               );
             },

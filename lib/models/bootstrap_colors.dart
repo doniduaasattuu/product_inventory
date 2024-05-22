@@ -8,5 +8,13 @@ class BootstrapColors {
   Color warning = const Color.fromARGB(255, 255, 193, 7);
   Color danger = const Color.fromARGB(255, 220, 53, 69);
   Color light = const Color.fromARGB(255, 248, 249, 250);
+  Color tertiary = const Color.fromARGB(255, 73, 80, 87);
   Color dark = const Color.fromARGB(255, 33, 37, 41);
+
+  Color teal = const Color.fromARGB(255, 32, 201, 151);
+  Color pink = const Color.fromARGB(255, 214, 51, 132);
+  Color purple = const Color.fromARGB(255, 111, 66, 193);
+  Color indigo = const Color.fromARGB(255, 102, 16, 242);
+
+  Color twitter = const Color.fromARGB(255, 29, 161, 242);
 }
