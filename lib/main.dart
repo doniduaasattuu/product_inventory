@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Product Inventory',
       home: const Login(),
+      // theme: ThemeData(
+      //   colorScheme: const ColorScheme.dark(),
+      // ),
       theme: ThemeData.dark(),
       // theme: ThemeData(
       //   colorScheme: ColorScheme.fromSeed(seedColor: BootstrapColors().info),

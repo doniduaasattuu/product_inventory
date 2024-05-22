@@ -6,7 +6,7 @@ class FormInput extends StatelessWidget {
     super.key,
     required this.inputLabel,
     required this.inputController,
-    required this.inputValidator,
+    this.inputValidator,
     this.secure = false,
   });
 
