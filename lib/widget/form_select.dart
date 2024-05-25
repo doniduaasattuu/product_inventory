@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:product_inventory/models/bootstrap_colors.dart';
-import 'package:product_inventory/models/bootstrap_colors.dart';
 
 // const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 enum ColorLabel {

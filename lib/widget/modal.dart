@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_inventory/models/bootstrap_colors.dart';
+import 'package:product_inventory/utility/bootstrap_colors.dart';
 
 // ignore: must_be_immutable
 class Modal extends StatelessWidget {

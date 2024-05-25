@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_inventory/ui/login/login.dart';
+import 'package:product_inventory/ui/product/products.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,14 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Product Inventory',
-      home: const Login(),
-      // theme: ThemeData(
-      //   colorScheme: const ColorScheme.dark(),
-      // ),
+      home: const Products(),
       theme: ThemeData.dark(),
-      // theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSeed(seedColor: BootstrapColors().info),
-      // ),
     );
   }
 }
