@@ -15,7 +15,7 @@ enum Category {
 const categoryIcons = {
   Category.gadget: Icons.smartphone,
   Category.computer: Icons.computer,
-  Category.audio: Icons.speaker,
+  Category.audio: Icons.headphones,
   Category.smartwatch: Icons.watch,
 };
 
@@ -28,14 +28,34 @@ class Product {
     required this.date,
   }) : id = uuid.v4();
 
-  final String id;
-  final String name;
-  final int price;
-  final Category category;
-  final int stock;
-  final DateTime date;
+  String id;
+  String name;
+  int price;
+  Category category;
+  int stock;
+  DateTime date;
 
   String get formattedDate {
     return formatter.format(date);
+  }
+
+  void setName(String name) {
+    this.name = name;
+  }
+
+  void setPrice(int price) {
+    this.price = price;
+  }
+
+  void setCategory(Category category) {
+    this.category = category;
+  }
+
+  void setStock(int stock) {
+    this.stock = stock;
+  }
+
+  void setDate(DateTime date) {
+    this.date = date;
   }
 }

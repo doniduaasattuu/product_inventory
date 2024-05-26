@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_inventory/models/product.dart';
 import 'package:product_inventory/services/user_service.dart';
-import 'package:product_inventory/ui/homepage/homepage.dart';
 import 'package:product_inventory/ui/product/products.dart';
 import 'package:product_inventory/ui/registration/registration.dart';
 import 'package:product_inventory/utility/header_text.dart';
@@ -85,7 +83,7 @@ class _LoginState extends State<Login> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Products(),
+                                  builder: (context) => const Products(),
                                 ),
                               );
                             } else {
