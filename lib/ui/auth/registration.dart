@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_inventory/ui/login/login.dart';
+import 'package:product_inventory/ui/auth/login.dart';
 import 'package:product_inventory/utility/header_text.dart';
 import 'package:product_inventory/utility/my_container.dart';
 import 'package:product_inventory/widget/form_input.dart';
@@ -95,17 +95,16 @@ class _RegistrationState extends State<Registration> {
                     Row(
                       children: [
                         PrimaryButton(
-                          buttonText: 'Register',
+                          buttonText: 'Sign In',
                           buttonOnPressed: () {},
                         )
                       ],
                     ),
                     Row(
                       children: [
-                        // Text('Dont have an account ?, register here.'),
                         HelperText(
                           mainText: 'Already have an account ?,',
-                          linkText: 'login here.',
+                          linkText: 'Login here.',
                           actionLink: const Login(),
                         ),
                       ],

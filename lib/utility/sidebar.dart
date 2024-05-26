@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:product_inventory/utility/bootstrap_colors.dart';
-import 'package:product_inventory/ui/login/login.dart';
+import 'package:product_inventory/ui/auth/login.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});

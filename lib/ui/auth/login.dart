@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:product_inventory/services/user_service.dart';
 import 'package:product_inventory/ui/product/products.dart';
-import 'package:product_inventory/ui/registration/registration.dart';
+import 'package:product_inventory/ui/auth/registration.dart';
 import 'package:product_inventory/utility/header_text.dart';
 import 'package:product_inventory/utility/my_container.dart';
+import 'package:product_inventory/widget/alert.dart';
 import 'package:product_inventory/widget/form_input.dart';
 import 'package:product_inventory/widget/helper_text.dart';
-import 'package:product_inventory/widget/modal.dart';
 import 'package:product_inventory/widget/primary_button.dart';
 
 class Login extends StatefulWidget {
@@ -18,8 +18,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _email = TextEditingController();
-  final _password = TextEditingController();
+  final _email = TextEditingController(text: 'doni.duaasattuu@gmail.com');
+  final _password = TextEditingController(text: 'rahasia');
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +89,17 @@ class _LoginState extends State<Login> {
                             } else {
                               showDialog(
                                 context: context,
-                                builder: (context) => Modal(
-                                  modalMessage: 'Email or password is wrong.',
-                                ),
+                                // builder: (context) => Modal(
+                                //   modalMessage: 'Email or password is wrong.',
+                                // ),
+                                builder: (context) {
+                                  return Alert(
+                                    ctx: context,
+                                    title: 'Login failed.',
+                                    content:
+                                        'The email address or password that you\'ve entered doesn\'t match any account. Sign up for an account.',
+                                  );
+                                },
                               );
                             }
                           },
@@ -106,7 +114,7 @@ class _LoginState extends State<Login> {
                   // Text('Dont have an account ?, register here.'),
                   HelperText(
                     mainText: 'Don\'t have an account ?,',
-                    linkText: 'register here.',
+                    linkText: 'Sign up here.',
                     actionLink: const Registration(),
                   ),
                 ],

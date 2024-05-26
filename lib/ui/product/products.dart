@@ -3,8 +3,9 @@ import 'package:product_inventory/models/product.dart';
 import 'package:product_inventory/ui/product/form_product.dart';
 import 'package:product_inventory/ui/product/product_list.dart';
 import 'package:product_inventory/utility/bootstrap_colors.dart';
+import 'package:product_inventory/utility/my_container.dart';
 import 'package:product_inventory/widget/floating_add_button.dart';
-import 'package:product_inventory/widget/sidebar.dart';
+import 'package:product_inventory/utility/sidebar.dart';
 
 final DateTime now = DateTime.now();
 
@@ -76,9 +77,11 @@ class _ProductState extends State<Products> {
   ];
 
   void _addProduct(Product product) {
-    setState(() {
-      _registeredProduct.add(product);
-    });
+    setState(
+      () {
+        _registeredProduct.add(product);
+      },
+    );
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -92,7 +95,9 @@ class _ProductState extends State<Products> {
         action: SnackBarAction(
           textColor: BootstrapColors().primary,
           label: 'Dismiss',
-          onPressed: () {},
+          onPressed: () {
+            ScaffoldMessenger.of(context).clearSnackBars();
+          },
         ),
       ),
     );
@@ -132,13 +137,34 @@ class _ProductState extends State<Products> {
     int indexProduct = _registeredProduct.indexOf(product);
     Product currentProduct = _registeredProduct[indexProduct];
 
-    setState(() {
-      currentProduct.name = dataProductUpdated['name'];
-      currentProduct.price = dataProductUpdated['price'];
-      currentProduct.category = dataProductUpdated['category'];
-      currentProduct.stock = dataProductUpdated['stock'];
-      currentProduct.date = dataProductUpdated['date'];
-    });
+    setState(
+      () {
+        currentProduct.name = dataProductUpdated['name'];
+        currentProduct.price = dataProductUpdated['price'];
+        currentProduct.category = dataProductUpdated['category'];
+        currentProduct.stock = dataProductUpdated['stock'];
+        currentProduct.date = dataProductUpdated['date'];
+      },
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: BootstrapColors().dark,
+        content: Text(
+          'Product updated successfully.',
+          style: TextStyle(
+            color: BootstrapColors().light,
+          ),
+        ),
+        action: SnackBarAction(
+          textColor: BootstrapColors().primary,
+          label: 'Dismiss',
+          onPressed: () {
+            ScaffoldMessenger.of(context).clearSnackBars();
+          },
+        ),
+      ),
+    );
   }
 
   void _openAddProductOverlay() {
@@ -181,8 +207,7 @@ class _ProductState extends State<Products> {
         ),
       ),
       drawer: const Sidebar(),
-      body: Container(
-        padding: const EdgeInsets.all(16),
+      body: MyContainer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

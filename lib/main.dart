@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:product_inventory/ui/product/products.dart';
+import 'package:product_inventory/ui/auth/login.dart';
 import 'package:product_inventory/utility/bootstrap_colors.dart';
 
 var kColorScheme = ColorScheme.fromSeed(seedColor: BootstrapColors().primary);
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Product Inventory',
-      home: const Products(),
+      home: const Login(),
       theme: ThemeData.dark(useMaterial3: true).copyWith(
         cardTheme: const CardTheme().copyWith(
           shape: RoundedRectangleBorder(

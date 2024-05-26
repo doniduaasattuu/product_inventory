@@ -107,19 +107,14 @@ class _FormProductState extends State<FormProduct> {
         _selectedDate == null) {
       showDialog(
         context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Input is invalid.'),
-          content: const Text(
-              'Please make sure a valid name, price, stock, category and date'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-              },
-              child: const Text('Okay'),
-            ),
-          ],
-        ),
+        builder: (ctx) {
+          return Alert(
+            ctx: ctx,
+            title: 'Input is invalid.',
+            content:
+                'Please make sure a valid name, price, stock, category and date',
+          );
+        },
       );
       return;
     }

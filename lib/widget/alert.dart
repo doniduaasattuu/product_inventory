@@ -31,7 +31,10 @@ class Alert extends StatelessWidget {
           ),
           child: Text(
             action ?? 'Okay',
-            style: TextStyle(color: BootstrapColors().light),
+            style: TextStyle(
+              color: BootstrapColors().light,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],
