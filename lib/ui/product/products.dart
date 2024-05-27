@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_inventory/models/product.dart';
+import 'package:product_inventory/models/user.dart';
+import 'package:product_inventory/services/product_service.dart';
 import 'package:product_inventory/ui/product/form_product.dart';
 import 'package:product_inventory/ui/product/product_list.dart';
 import 'package:product_inventory/utility/bootstrap_colors.dart';
@@ -7,74 +9,24 @@ import 'package:product_inventory/utility/my_container.dart';
 import 'package:product_inventory/widget/floating_add_button.dart';
 import 'package:product_inventory/utility/sidebar.dart';
 
-final DateTime now = DateTime.now();
-
 class Products extends StatefulWidget {
-  const Products({super.key});
+  const Products({super.key, required this.user});
+
+  final User user;
 
   @override
   State<StatefulWidget> createState() => _ProductState();
 }
 
 class _ProductState extends State<Products> {
-  final List<Product> _registeredProduct = [
-    Product(
-      name: 'iPhone 13 Pro Max',
-      price: 13000000,
-      category: Category.gadget,
-      stock: 12,
-      date: DateTime(now.year, now.month, now.day - 7),
-    ),
-    Product(
-      name: 'iPhone 12 Pro',
-      price: 11000000,
-      category: Category.gadget,
-      stock: 18,
-      date: DateTime(now.year, now.month, now.day - 6),
-    ),
-    Product(
-      name: 'iPhone 13',
-      price: 12500000,
-      category: Category.gadget,
-      stock: 8,
-      date: DateTime(now.year, now.month, now.day - 5),
-    ),
-    Product(
-      name: 'Macbook Pro 2024',
-      price: 32500000,
-      category: Category.computer,
-      stock: 5,
-      date: DateTime(now.year, now.month, now.day - 4),
-    ),
-    Product(
-      name: 'Apple watch 2024',
-      price: 8500000,
-      category: Category.smartwatch,
-      stock: 35,
-      date: DateTime(now.year, now.month, now.day - 3),
-    ),
-    Product(
-      name: 'Senheiser Momentum 4',
-      price: 4950000,
-      category: Category.audio,
-      stock: 103,
-      date: DateTime(now.year, now.month, now.day - 2),
-    ),
-    // Product(
-    //   name: 'MacBook Air 2024',
-    //   price: 32000000,
-    //   category: Category.computer,
-    //   stock: 7,
-    //   date: DateTime(now.year, now.month, now.day - 1),
-    // ),
-    // Product(
-    //   name: 'Sony Monitor Speaker',
-    //   price: 19000000,
-    //   category: Category.audio,
-    //   stock: 2,
-    //   date: now,
-    // ),
-  ];
+  List<Product> _registeredProduct = ProductService().index();
+  final _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   void _addProduct(Product product) {
     setState(
@@ -181,9 +133,31 @@ class _ProductState extends State<Products> {
         });
   }
 
+  void _filterProduct() {
+    if (_searchController.text.isNotEmpty) {
+      setState(() {
+        _registeredProduct = _registeredProduct
+            .where((product) => product.name
+                .toLowerCase()
+                .contains(_searchController.text.toLowerCase()))
+            .toList();
+      });
+    } else {
+      setState(() {
+        _registeredProduct = ProductService().index();
+      });
+    }
+  }
+
+  void _restartProduct() {
+    setState(() {
+      _registeredProduct = ProductService().index();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final searchController = TextEditingController();
+    final user = widget.user;
 
     Widget mainContent = const Center(
       child: Text('No products found.'),
@@ -206,21 +180,42 @@ class _ProductState extends State<Products> {
           textAlign: TextAlign.end,
         ),
       ),
-      drawer: const Sidebar(),
+      drawer: Sidebar(user: user),
       body: MyContainer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              controller: searchController,
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                labelText: 'Search',
-                suffixIcon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.search),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      _restartProduct();
+                      _filterProduct();
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Search',
+                      // suffixIcon: IconButton(
+                      //   onPressed: _filterProduct,
+                      //   icon: const Icon(Icons.search),
+                      // ),
+                    ),
+                  ),
                 ),
-              ),
+                // Expanded(
+                //   child: DropdownButton(
+                //     items: Category.values
+                //         .map((category) => DropdownMenuItem(
+                //               value: category,
+                //               child:
+                //                   Text(category.name.toString().toUpperCase()),
+                //             ))
+                //         .toList(),
+                //     onChanged: (value) {},
+                //   ),
+                // ),
+              ],
             ),
             const SizedBox(height: 20),
             const Text(

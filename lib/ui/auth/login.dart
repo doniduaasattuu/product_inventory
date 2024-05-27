@@ -85,12 +85,13 @@ class _LoginState extends State<Login> {
                         String password = _password.text;
 
                         await UserService().login(email, password).then(
-                          (isVerified) {
-                            if (isVerified) {
+                          (verifiedUser) {
+                            if (verifiedUser != null) {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Products(),
+                                  builder: (context) =>
+                                      Products(user: verifiedUser),
                                 ),
                               );
                             } else {
@@ -102,7 +103,7 @@ class _LoginState extends State<Login> {
                                 builder: (context) {
                                   return Alert(
                                     ctx: context,
-                                    title: 'Login failed.',
+                                    title: 'Login failed',
                                     content:
                                         'The email address or password that you\'ve entered doesn\'t match any account. Sign up for an account.',
                                   );

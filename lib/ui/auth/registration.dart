@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_inventory/services/user_service.dart';
 import 'package:product_inventory/ui/auth/login.dart';
+import 'package:product_inventory/utility/bootstrap_colors.dart';
 import 'package:product_inventory/utility/header_text.dart';
 import 'package:product_inventory/utility/my_container.dart';
 import 'package:product_inventory/widget/alert.dart';
@@ -136,9 +137,11 @@ class _RegistrationState extends State<Registration> {
                                       builder: (ctx) {
                                         return Alert(
                                           ctx: ctx,
-                                          title: 'Registration success.',
+                                          title: 'Registration success',
                                           content:
                                               'Your account successfully created.',
+                                          borderColor:
+                                              BootstrapColors().success,
                                           onPressed: const Login(),
                                         );
                                       },
@@ -150,7 +153,7 @@ class _RegistrationState extends State<Registration> {
                                       builder: (ctx) {
                                         return Alert(
                                           ctx: ctx,
-                                          title: 'Registration failed.',
+                                          title: 'Registration failed',
                                           content:
                                               'The email address and/or account name provided may be registered already.',
                                         );
@@ -163,7 +166,7 @@ class _RegistrationState extends State<Registration> {
                                       builder: (ctx) {
                                         return Alert(
                                           ctx: ctx,
-                                          title: 'Registration failed.',
+                                          title: 'Registration failed',
                                           content:
                                               'Password do not match, enter your password and confirmation again.',
                                         );
@@ -176,7 +179,7 @@ class _RegistrationState extends State<Registration> {
                                       builder: (ctx) {
                                         return Alert(
                                           ctx: ctx,
-                                          title: 'Registration failed.',
+                                          title: 'Registration failed',
                                           content:
                                               'Please make sure a valid email, name, password and phone number.',
                                         );

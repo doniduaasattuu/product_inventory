@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:product_inventory/data/users.dart';
+import 'package:product_inventory/models/user.dart';
 import 'package:product_inventory/ui/auth/login.dart';
 import 'package:product_inventory/widget/account_drawer.dart';
 
 class Sidebar extends StatelessWidget {
-  const Sidebar({super.key});
+  const Sidebar({super.key, required this.user});
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -12,32 +14,8 @@ class Sidebar extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          // UserAccountsDrawerHeader(
-          //   decoration: BoxDecoration(
-          //     gradient: LinearGradient(
-          //       begin: Alignment.topLeft,
-          //       end: Alignment.bottomRight,
-          //       colors: [
-          //         BootstrapColors().primary,
-          //         BootstrapColors().dark,
-          //       ],
-          //     ),
-          //   ),
-          //   accountName: const Text(
-          //     'Doni Darmawan',
-          //     style: TextStyle(
-          //       fontWeight: FontWeight.bold,
-          //     ),
-          //   ),
-          //   accountEmail: const Text(
-          //     'admin@product_inventory.com',
-          //   ),
-          //   currentAccountPicture: const CircleAvatar(
-          //     backgroundImage: AssetImage("assets/images/doni.jpg"),
-          //   ),
-          // ),
           AccountDrawer(
-            user: users[0],
+            user: user,
           ),
           ListTile(
             leading: const Icon(Icons.qr_code),

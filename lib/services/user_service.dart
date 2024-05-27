@@ -2,18 +2,33 @@ import 'package:product_inventory/data/users.dart';
 import 'package:product_inventory/models/user.dart';
 
 class UserService {
-  Future<bool> login(String email, String password) async {
-    bool isVerified = false;
+  Future<User?> login(String email, String password) async {
+    User? verifiedUser;
 
     // check user is valid
     for (final user in users) {
       if (user.email == email && user.password == password) {
-        isVerified = true;
+        return user;
       }
     }
 
-    return isVerified;
+    return verifiedUser;
   }
+
+  // Future<bool> login(String email, String password) async {
+  //   bool isVerified = false;
+
+  //   // check user is valid
+  //   for (final user in users) {
+  //     if (user.email == email && user.password == password) {
+  //       isVerified = true;
+  //       loggedUser.add(user);
+  //       break;
+  //     }
+  //   }
+
+  //   return isVerified;
+  // }
 
   Future<int> register(
     String email,
