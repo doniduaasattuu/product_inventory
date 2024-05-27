@@ -3,12 +3,18 @@ import 'package:product_inventory/utility/bootstrap_colors.dart';
 
 class Alert extends StatelessWidget {
   const Alert(
-      {super.key, required this.ctx, this.title, this.content, this.action});
+      {super.key,
+      required this.ctx,
+      this.title,
+      this.content,
+      this.action,
+      this.onPressed});
 
   final BuildContext ctx;
   final String? title;
   final String? content;
   final String? action;
+  final Widget? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,16 @@ class Alert extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.pop(ctx);
+            if (onPressed == null) {
+              Navigator.pop(ctx);
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (builder) => onPressed!,
+                ),
+              );
+            }
           },
           style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(BootstrapColors().primary),

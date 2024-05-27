@@ -25,13 +25,10 @@ class PrimaryButton extends StatelessWidget {
           ),
         ),
         backgroundColor: BootstrapColors().primary,
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-        // padding: WidgetStateProperty.all(
-        //   const EdgeInsets.symmetric(
-        //     horizontal: 10,
-        //     vertical: 8,
-        //   ),
-        // ),
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 20,
+        ),
       ),
       label: Text(
         buttonText,

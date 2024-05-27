@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
-
-const uuid = Uuid();
-final formatter = DateFormat.yMMMd();
+import 'package:product_inventory/utility/utility.dart';
 
 enum Category {
   gadget,

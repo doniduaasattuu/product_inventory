@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_inventory/models/product.dart';
 import 'package:product_inventory/utility/bootstrap_colors.dart';
+import 'package:product_inventory/utility/utility.dart';
 import 'package:product_inventory/widget/alert.dart';
 import 'package:product_inventory/widget/suffix_clear_button.dart';
 

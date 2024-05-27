@@ -1,18 +1,60 @@
+import 'package:product_inventory/data/users.dart';
+import 'package:product_inventory/models/user.dart';
+
 class UserService {
   Future<bool> login(String email, String password) async {
     bool isVerified = false;
 
-    if (email == 'doni.duaasattuu@gmail.com' && password == 'rahasia') {
-      return true;
-    } else if (email == 'shintiakartikasari22@gmail.com' &&
-        password == 'rahasia') {
-      return true;
-    } else if (email == 'anggigitacahyani@gmail.com' && password == 'rahasia') {
-      return true;
-    } else if (email == 'tiaraanggreani@gmail.com' && password == 'rahasia') {
-      return true;
-    } else {
-      return isVerified;
+    // check user is valid
+    for (final user in users) {
+      if (user.email == email && user.password == password) {
+        isVerified = true;
+      }
     }
+
+    return isVerified;
+  }
+
+  Future<int> register(
+    String email,
+    String name,
+    String password,
+    String passwordConfirm,
+    String phoneNumber,
+  ) async {
+    int registrationResponse = 400;
+
+    // check input is valid
+    if (email.isEmpty ||
+        name.isEmpty ||
+        password.isEmpty ||
+        passwordConfirm.isEmpty) {
+      registrationResponse = 400;
+      return registrationResponse;
+    } else if (password != passwordConfirm) {
+      registrationResponse = 422;
+      return registrationResponse;
+    } else {
+      // check user is exist
+      for (final user in users) {
+        if (user.email == email || user.name == name) {
+          registrationResponse = 409;
+          return registrationResponse;
+        }
+      }
+
+      // create new user
+      final User user = User(
+        email: email,
+        name: name,
+        password: password,
+        phoneNumber: phoneNumber,
+      );
+
+      users.add(user);
+      registrationResponse = 200;
+    }
+
+    return registrationResponse;
   }
 }

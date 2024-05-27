@@ -22,6 +22,13 @@ class _LoginState extends State<Login> {
   final _password = TextEditingController(text: 'rahasia');
 
   @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MyContainer(
       child: Center(
@@ -109,6 +116,7 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
+              const SizedBox(height: 4),
               Row(
                 children: [
                   // Text('Dont have an account ?, register here.'),
