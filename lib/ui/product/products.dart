@@ -8,6 +8,7 @@ import 'package:product_inventory/utility/bootstrap_colors.dart';
 import 'package:product_inventory/utility/my_container.dart';
 import 'package:product_inventory/widget/floating_add_button.dart';
 import 'package:product_inventory/utility/sidebar.dart';
+import 'package:product_inventory/widget/primary_button.dart';
 
 class Products extends StatefulWidget {
   const Products({super.key, required this.user});
@@ -218,6 +219,8 @@ class _ProductState extends State<Products> {
               ],
             ),
             const SizedBox(height: 20),
+            PrimaryButton(buttonText: 'Category', buttonOnPressed: () {}),
+            const SizedBox(height: 8),
             const Text(
               'Products',
               style: TextStyle(

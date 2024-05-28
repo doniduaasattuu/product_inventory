@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:product_inventory/models/user.dart';
 import 'package:product_inventory/ui/auth/login.dart';
+import 'package:product_inventory/ui/product/products.dart';
+import 'package:product_inventory/ui/user/users.dart';
 import 'package:product_inventory/widget/account_drawer.dart';
 
 class Sidebar extends StatelessWidget {
@@ -17,6 +19,30 @@ class Sidebar extends StatelessWidget {
           AccountDrawer(
             user: user,
           ),
+          ListTile(
+            leading: const Icon(Icons.home_rounded),
+            title: const Text('Products'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Products(user: user),
+                ),
+              );
+            },
+          ),
+          // ListTile(
+          //   leading: const Icon(Icons.category_outlined),
+          //   title: const Text('Category'),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => Products(user: user),
+          //       ),
+          //     );
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.qr_code),
             title: const Text('Scanner'),
@@ -55,12 +81,12 @@ class Sidebar extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.people),
-            title: const Text('User'),
+            title: const Text('Users'),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Login(),
+                  builder: (context) => Users(user: user),
                 ),
               );
             },

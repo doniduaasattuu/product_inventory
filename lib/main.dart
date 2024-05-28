@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Product Inventory',
+      title: 'Product Inventory App',
       home: const Login(),
       theme: ThemeData.dark(useMaterial3: true).copyWith(
         cardTheme: const CardTheme().copyWith(

@@ -72,4 +72,15 @@ class UserService {
 
     return registrationResponse;
   }
+
+  List<User> index({String? search}) {
+    if (search != null) {
+      return users
+          .where(
+              (user) => user.name.toLowerCase().contains(search.toLowerCase()))
+          .toList();
+    } else {
+      return users;
+    }
+  }
 }
