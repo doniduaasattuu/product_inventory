@@ -2,6 +2,17 @@ import 'package:product_inventory/data/users.dart';
 import 'package:product_inventory/models/user.dart';
 
 class UserService {
+  List<User> index({String? search}) {
+    if (search != null) {
+      return users
+          .where(
+              (user) => user.name.toLowerCase().contains(search.toLowerCase()))
+          .toList();
+    } else {
+      return users;
+    }
+  }
+
   Future<User?> login(String email, String password) async {
     User? verifiedUser;
 
@@ -14,21 +25,6 @@ class UserService {
 
     return verifiedUser;
   }
-
-  // Future<bool> login(String email, String password) async {
-  //   bool isVerified = false;
-
-  //   // check user is valid
-  //   for (final user in users) {
-  //     if (user.email == email && user.password == password) {
-  //       isVerified = true;
-  //       loggedUser.add(user);
-  //       break;
-  //     }
-  //   }
-
-  //   return isVerified;
-  // }
 
   Future<int> register(
     String email,
@@ -71,16 +67,5 @@ class UserService {
     }
 
     return registrationResponse;
-  }
-
-  List<User> index({String? search}) {
-    if (search != null) {
-      return users
-          .where(
-              (user) => user.name.toLowerCase().contains(search.toLowerCase()))
-          .toList();
-    } else {
-      return users;
-    }
   }
 }

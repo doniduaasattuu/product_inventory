@@ -39,7 +39,7 @@ class UserItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 14),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -63,50 +63,6 @@ class UserItem extends StatelessWidget {
                   )
                 ],
               ),
-
-              // PopupMenuButton<Menu>(
-              //   // popUpAnimationStyle: _animationStyle,
-              //   icon: const Icon(Icons.more_vert),
-              //   onSelected: (Menu item) {},
-              //   itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
-              //     const PopupMenuItem<Menu>(
-              //       value: Menu.preview,
-              //       child: ListTile(
-              //         leading: Icon(Icons.visibility_outlined),
-              //         title: Text('Preview'),
-              //       ),
-              //     ),
-              //     const PopupMenuItem<Menu>(
-              //       value: Menu.share,
-              //       child: ListTile(
-              //         leading: Icon(Icons.share_outlined),
-              //         title: Text('Share'),
-              //       ),
-              //     ),
-              //     const PopupMenuItem<Menu>(
-              //       value: Menu.getLink,
-              //       child: ListTile(
-              //         leading: Icon(Icons.link_outlined),
-              //         title: Text('Get link'),
-              //       ),
-              //     ),
-              //     const PopupMenuDivider(),
-              //     const PopupMenuItem<Menu>(
-              //       value: Menu.remove,
-              //       child: ListTile(
-              //         leading: Icon(Icons.delete_outline),
-              //         title: Text('Remove'),
-              //       ),
-              //     ),
-              //     const PopupMenuItem<Menu>(
-              //       value: Menu.download,
-              //       child: ListTile(
-              //         leading: Icon(Icons.download_outlined),
-              //         title: Text('Download'),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),

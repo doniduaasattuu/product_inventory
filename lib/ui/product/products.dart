@@ -6,9 +6,11 @@ import 'package:product_inventory/ui/product/form_product.dart';
 import 'package:product_inventory/ui/product/product_list.dart';
 import 'package:product_inventory/utility/bootstrap_colors.dart';
 import 'package:product_inventory/utility/my_container.dart';
+import 'package:product_inventory/widget/empty.dart';
 import 'package:product_inventory/widget/floating_add_button.dart';
 import 'package:product_inventory/utility/sidebar.dart';
 import 'package:product_inventory/widget/list_category.dart';
+import 'package:product_inventory/widget/suffix_clear_button.dart';
 
 class Products extends StatefulWidget {
   const Products({super.key, required this.user});
@@ -137,13 +139,14 @@ class _ProductState extends State<Products> {
 
   void _filterProduct() {
     final String searchValue = _searchController.text;
+    final Category? category = _selectedCategory;
 
     _restartProduct();
 
     setState(
       () {
-        _registeredProduct = ProductService()
-            .index(search: searchValue, category: _selectedCategory);
+        _registeredProduct =
+            ProductService().index(search: searchValue, category: category);
       },
     );
   }
@@ -158,9 +161,7 @@ class _ProductState extends State<Products> {
   Widget build(BuildContext context) {
     final user = widget.user;
 
-    Widget mainContent = const Center(
-      child: Text('No products found.'),
-    );
+    Widget mainContent = const Empty(text: 'No products found');
 
     if (_registeredProduct.isNotEmpty) {
       mainContent = ProductList(
@@ -184,24 +185,43 @@ class _ProductState extends State<Products> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              'Products',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
                   child: TextField(
+                    onTapOutside: (PointerDownEvent event) {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    },
                     controller: _searchController,
                     onChanged: (value) {
                       _filterProduct();
                     },
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Search',
-                      // suffixIcon: IconButton(
-                      //   onPressed: _filterProduct,
-                      //   icon: const Icon(Icons.search),
-                      // ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: BootstrapColors().secondary,
+                        ),
+                      ),
+                      suffixIcon: SuffixClearButton(
+                        controller: _searchController,
+                        onPressed: () {
+                          _restartProduct();
+                          _filterProduct();
+                        },
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 10),
                 ListCategory(
                   onSelected: (category) {
                     _selectedCategory = category;
@@ -210,17 +230,7 @@ class _ProductState extends State<Products> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-            // ListCategory(),
-            const SizedBox(height: 8),
-            const Text(
-              'Products',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 16),
             Expanded(
               child: mainContent,
             ),

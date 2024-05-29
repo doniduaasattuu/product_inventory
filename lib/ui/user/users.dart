@@ -17,11 +17,20 @@ class Users extends StatefulWidget {
 }
 
 class _UsersState extends State<Users> {
-  final List<User> _registeredUser = UserService().index();
+  List<User> _registeredUser = UserService().index();
+  final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final user = widget.user;
+
+    void filterUser() {
+      final String searchValue = _searchController.text;
+
+      setState(() {
+        _registeredUser = UserService().index(search: searchValue);
+      });
+    }
 
     Widget mainContent = const Center(
       child: Text('No users found.'),
@@ -50,29 +59,15 @@ class _UsersState extends State<Users> {
               children: [
                 Expanded(
                   child: TextField(
-                    // controller: _searchController,
-                    onChanged: (value) {},
+                    controller: _searchController,
+                    onChanged: (value) {
+                      filterUser();
+                    },
                     decoration: const InputDecoration(
                       labelText: 'Search',
-                      // suffixIcon: IconButton(
-                      //   onPressed: _filterProduct,
-                      //   icon: const Icon(Icons.search),
-                      // ),
                     ),
                   ),
                 ),
-                // Expanded(
-                //   child: DropdownButton(
-                //     items: Category.values
-                //         .map((category) => DropdownMenuItem(
-                //               value: category,
-                //               child:
-                //                   Text(category.name.toString().toUpperCase()),
-                //             ))
-                //         .toList(),
-                //     onChanged: (value) {},
-                //   ),
-                // ),
               ],
             ),
             const SizedBox(height: 20),

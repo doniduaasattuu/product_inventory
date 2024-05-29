@@ -14,11 +14,8 @@ class ListCategory extends StatefulWidget {
 class _ListCategoryState extends State<ListCategory> {
   @override
   Widget build(BuildContext context) {
-    // final List<Category> categories =
-    //     Category.values.map((category) => category).toList();
-
     List<DropdownMenuEntry> init = [
-      const DropdownMenuEntry(value: null, label: '')
+      const DropdownMenuEntry(value: null, label: '-- ALL --')
     ];
 
     List<DropdownMenuEntry> cate = Category.values
@@ -28,26 +25,9 @@ class _ListCategoryState extends State<ListCategory> {
 
     final List<DropdownMenuEntry> categories = init + cate;
 
-    // categories.insert(0, '');
-
     return DropdownMenu(
+      label: const Text('Category'),
       controller: widget.controller,
-      // dropdownMenuEntries: categories
-      //     .map(
-      //       (category) => DropdownMenuEntry(
-      //         value: category,
-      //         label: category.toUpperCase(),
-      //       ),
-      //     )
-      //     .toList(),
-
-      // dropdownMenuEntries: Category.values
-      //     .map((category) => DropdownMenuEntry(
-      //           value: category.index,
-      //           label: category.index.toString(),
-      //         ))
-      //     .toList(),
-
       dropdownMenuEntries: categories.map((e) => e).toList(),
       onSelected: (category) {
         widget.onSelected(category);

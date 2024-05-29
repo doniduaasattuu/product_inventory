@@ -174,7 +174,7 @@ class _FormProductState extends State<FormProduct> {
             controller: _nameController,
             decoration: InputDecoration(
               label: const Text('Product name'),
-              suffixIcon: SuffixClearButton(onPressed: _nameController),
+              suffixIcon: SuffixClearButton(controller: _nameController),
             ),
             onChanged: (value) {
               if (value.isEmpty) {
@@ -204,7 +204,7 @@ class _FormProductState extends State<FormProduct> {
                   decoration: InputDecoration(
                     prefixText: 'Rp',
                     label: const Text('Price'),
-                    suffixIcon: SuffixClearButton(onPressed: _priceController),
+                    suffixIcon: SuffixClearButton(controller: _priceController),
                   ),
                   onChanged: (value) {
                     if (value.isEmpty) {
@@ -234,7 +234,9 @@ class _FormProductState extends State<FormProduct> {
                   decoration: InputDecoration(
                     prefixText: 'Qty ',
                     label: const Text('Stock'),
-                    suffixIcon: SuffixClearButton(onPressed: _stockController),
+                    suffixIcon: SuffixClearButton(
+                      controller: _stockController,
+                    ),
                   ),
                   onChanged: (value) {
                     if (value.isEmpty) {

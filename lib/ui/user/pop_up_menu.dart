@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_inventory/utility/bootstrap_colors.dart';
 
 enum Menu { preview, share, getLink, remove, download }
 
@@ -13,7 +14,10 @@ class _PopUpMenuState extends State<PopUpMenu> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      icon: const Icon(Icons.more_vert),
+      icon: Icon(
+        Icons.more_vert,
+        color: BootstrapColors().secondary,
+      ),
       itemBuilder: (ctx) => <PopupMenuEntry<Menu>>[
         const PopupMenuItem(
           value: Menu.preview,
