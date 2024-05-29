@@ -8,6 +8,7 @@ import 'package:product_inventory/utility/bootstrap_colors.dart';
 import 'package:product_inventory/utility/my_container.dart';
 import 'package:product_inventory/widget/floating_add_button.dart';
 import 'package:product_inventory/utility/sidebar.dart';
+import 'package:product_inventory/widget/list_category.dart';
 
 class Products extends StatefulWidget {
   const Products({super.key, required this.user});
@@ -21,6 +22,7 @@ class Products extends StatefulWidget {
 class _ProductState extends State<Products> {
   List<Product> _registeredProduct = ProductService().index();
   final _searchController = TextEditingController();
+  Category? _selectedCategory;
 
   @override
   void dispose() {
@@ -134,19 +136,16 @@ class _ProductState extends State<Products> {
   }
 
   void _filterProduct() {
-    if (_searchController.text.isNotEmpty) {
-      setState(() {
-        _registeredProduct = _registeredProduct
-            .where((product) => product.name
-                .toLowerCase()
-                .contains(_searchController.text.toLowerCase()))
-            .toList();
-      });
-    } else {
-      setState(() {
-        _registeredProduct = ProductService().index();
-      });
-    }
+    final String searchValue = _searchController.text;
+
+    _restartProduct();
+
+    setState(
+      () {
+        _registeredProduct = ProductService()
+            .index(search: searchValue, category: _selectedCategory);
+      },
+    );
   }
 
   void _restartProduct() {
@@ -191,7 +190,6 @@ class _ProductState extends State<Products> {
                   child: TextField(
                     controller: _searchController,
                     onChanged: (value) {
-                      _restartProduct();
                       _filterProduct();
                     },
                     decoration: const InputDecoration(
@@ -203,22 +201,17 @@ class _ProductState extends State<Products> {
                     ),
                   ),
                 ),
-                // Expanded(
-                //   child: DropdownButton(
-                //     items: Category.values
-                //         .map((category) => DropdownMenuItem(
-                //               value: category,
-                //               child:
-                //                   Text(category.name.toString().toUpperCase()),
-                //             ))
-                //         .toList(),
-                //     onChanged: (value) {},
-                //   ),
-                // ),
+                const SizedBox(width: 20),
+                ListCategory(
+                  onSelected: (category) {
+                    _selectedCategory = category;
+                    _filterProduct();
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 20),
-            // SegmentedCategory(),
+            // ListCategory(),
             const SizedBox(height: 8),
             const Text(
               'Products',
