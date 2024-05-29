@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:product_inventory/models/user.dart';
+import 'package:product_inventory/ui/user/pop_up_menu.dart';
 import 'package:product_inventory/utility/bootstrap_colors.dart';
 import 'package:product_inventory/utility/header_text.dart';
 
@@ -25,11 +25,6 @@ class UserItem extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      // Icon(
-                      //   Icons.person,
-                      //   color: BootstrapColors().info,
-                      //   size: 35,
-                      // ),
                       IconButton(
                         onPressed: () {},
                         icon: Icon(
@@ -61,17 +56,9 @@ class UserItem extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Column(
+                  const Column(
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          debugPrint('Delete user with id = ${user.id}');
-                        },
-                        icon: Icon(
-                          CupertinoIcons.delete_simple,
-                          color: BootstrapColors().danger,
-                        ),
-                      ),
+                      PopUpMenu(),
                     ],
                   )
                 ],
