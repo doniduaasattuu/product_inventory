@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:product_inventory/models/user.dart';
 import 'package:product_inventory/ui/auth/login.dart';
 import 'package:product_inventory/ui/product/products.dart';
+import 'package:product_inventory/ui/sales/sales.dart';
 import 'package:product_inventory/ui/user/users.dart';
 import 'package:product_inventory/widget/account_drawer.dart';
 
@@ -74,7 +75,7 @@ class Sidebar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Login(),
+                  builder: (context) => Sales(user: user),
                 ),
               );
             },
