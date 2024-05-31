@@ -16,7 +16,7 @@ class SalesItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              sales.month,
+              SalesModel.formattedMonth(sales.month),
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
@@ -28,7 +28,10 @@ class SalesItem extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text('${sales.sales.toString()} Jt'),
+            Text(
+              '${sales.sales.toString()} Jt',
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
             Text(sales.formattedDate.toString()),
           ],
         )

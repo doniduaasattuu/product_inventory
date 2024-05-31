@@ -42,28 +42,32 @@ class _SalesState extends State<Sales> {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: BootstrapColors().primary,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.add,
-                    color: BootstrapColors().light,
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: BootstrapColors().primary,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 18),
                   ),
-                  Text(
-                    'New Sales',
-                    style: TextStyle(
-                      color: BootstrapColors().light,
-                    ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: BootstrapColors().light,
+                      ),
+                      Text(
+                        'New Sales',
+                        style: TextStyle(
+                          color: BootstrapColors().light,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             const SizedBox(height: 24),
             SizedBox(
@@ -98,8 +102,25 @@ class _SalesState extends State<Sales> {
               ),
             ),
             const SizedBox(height: 24),
-            const HeaderText(text: 'Recent sales', textSize: 22),
-            const SizedBox(height: 16),
+            const Row(
+              // mainAxisSize: MainAxisSize.min,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                HeaderText(text: 'Recent sales', textSize: 22),
+                Spacer(),
+                DropdownMenu(
+                  inputDecorationTheme: InputDecorationTheme(
+                    border: InputBorder.none,
+                  ),
+                  dropdownMenuEntries: [
+                    DropdownMenuEntry(value: 'Daily', label: 'Daily'),
+                    DropdownMenuEntry(value: 'Monthly', label: 'Monthly'),
+                    DropdownMenuEntry(value: 'Year', label: 'Year'),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
             const Expanded(
               child: SalesRecent(),
             ),
