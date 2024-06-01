@@ -115,7 +115,7 @@ class _SalesState extends State<Sales> {
                   dropdownMenuEntries: [
                     DropdownMenuEntry(value: 'Daily', label: 'Daily'),
                     DropdownMenuEntry(value: 'Monthly', label: 'Monthly'),
-                    DropdownMenuEntry(value: 'Year', label: 'Year'),
+                    DropdownMenuEntry(value: 'Year', label: 'Year to date'),
                   ],
                 ),
               ],
